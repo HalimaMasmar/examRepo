@@ -1,0 +1,42 @@
+#spring:
+  #application:
+   # name: students
+ # config:
+    #import: optional:configserver:http://localhost:8888
+
+#  port: 8070
+
+spring:
+  application:
+    name: schools
+  datasource:
+    url: jdbc:postgresql://pg-1e2692ff-gimish2024-fb6e.aivencloud.com:18523/defaultdb?sslmode=require
+    username: avnadmin
+    password: AVNS_2LLimpsdmvrnDtQxBAJ
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update  # Consider using 'update' or 'validate' in production
+      format_sql: true
+    database: POSTGRESQL
+    dialect: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false  # Can help avoid some issues in cloud environments
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+application:
+  config:
+    students-url: http://localhost:8222/api/v1/students
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
